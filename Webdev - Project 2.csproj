@@ -36,12 +36,12 @@
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\maps\maps.component.ts" />
     <None Remove="ClientApp\src\app\report\file.ts" />
+    <None Remove="ClientApp\src\app\report\report.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\maps\maps.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\report\file.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
