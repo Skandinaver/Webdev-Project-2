@@ -4,6 +4,7 @@ header {
   top: 0;
   left: 0;
   padding: 0 100px;
+  height: 7%;
   width: 100%;
   box-sizing: border-box;
   background: #000000;
@@ -33,30 +34,14 @@ header {
         position: relative;
       }
 
-        header nav ul li.sub-menu:before {
-          content: '\f078';
-          font-family: fontAwesome;
-          position: absolute;
-          line-height: 50px;
-          color: #fff;
-          right: 1px;
-        }
-
-        header nav ul li.active.sub-menu:before {
-          content: '\f077';
-        }
-
         header nav ul li ul {
           position: absolute;
           left: 0;
           background: #333;
-          display: none
+          display: none;
         }
 
-        header nav ul li.active ul {
-          display: block;
-        }
-
+ 
         header nav ul li ul li {
           display: block;
           width: 200px;
@@ -115,14 +100,13 @@ header {
 
       header nav ul li.active ul {
         position: relative;
-        background: #003e6f;
+        background: #003e6f;  
       }
 
       header nav ul li ul li {
         width: 100%;
       }
 }
-
 .nav-link {
   color: white;
   font-size: 20px;

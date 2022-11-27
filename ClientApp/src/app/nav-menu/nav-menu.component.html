@@ -6,23 +6,21 @@
   <nav>
     <ul>
       <li>
-      <a href="/ClientApp/src/app/home/home.component.html">Home</a>
+      <a class="nav-link" [routerLink] ="['/'] ">Home</a>
       </li>
       <li>
-      <a href="/ClientApp/src/app/maps/maps.component.html">Maps</a>
+      <a class="nav-link"[routerLink]="['/maps']">Maps</a>
       </li>
       <li>
-      <a href="/ClientApp/src/app/report/report.component.html">Report a UFO</a>
+        <a class="nav-link" [routerLink]="['/report']">Report a UFO</a>
       </li>
       <li>
-      <a href="/ClientApp/src/app/login/login.component.html">Login</a>
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
     </ul>
 
     <router-outlet></router-outlet>
 
-
   </nav>
-
 </header>
 
