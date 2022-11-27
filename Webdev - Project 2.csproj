@@ -31,7 +31,6 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\maps\maps.component.ts" />
-    <None Remove="ClientApp\src\app\report\file.ts" />
     <None Remove="ClientApp\src\app\report\report.component.ts" />
   </ItemGroup>
 
