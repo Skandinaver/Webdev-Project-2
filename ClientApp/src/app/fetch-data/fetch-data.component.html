@@ -1,13 +1,28 @@
+<h1 id="tableLabel">Weather forecast</h1>
 
-<header>
-  <div class="logo">UFO observations </div>
-  <nav>
-    <ul>
-      <li><a href="/ClientApp/src/app/home/home.component.html">Home</a></li>
-      <li><a href="/ClientApp/src/app/maps/maps.component.html">Maps</a></li>
-      <li><a href="/ClientApp/src/app/report/report.component.html">Report a UFO</a></li>
-      <li><a href="/ClientApp/src/app/login/login.component.html">Login</a></li>
-    </ul>
-  </nav>
-</header>
+<p>This component demonstrates fetching data from the server.</p>
 
+<p *ngIf="!UFO_sightings"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="UFO_sightings">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Category</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Observation date</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let UFO_sighting of UFO_sightings">
+      <td>{{ UFO_sighting.ufO_title }}</td>
+      <td>{{ UFO_sighting.category.category_name }}</td>
+      <td>{{ UFO_sighting.longitude }}</td>
+      <td>{{ UFO_sighting.latitude }}</td>
+      <td>{{ UFO_sighting.observation_date }}</td>
+      <td>{{ UFO_sighting.description }}</td>
+    </tr>
+  </tbody>
+</table>
