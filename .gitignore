@@ -231,4 +231,4 @@ _Pvt_Extensions
 .fake/
 
 # Angular cache files
-.angular/cache/
+ClientApp/.angular/cache/
