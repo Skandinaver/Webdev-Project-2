@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using Webdev___Project_2.JwtFeatures;
 using Webdev___Project_2.Models;
+using Webdev___Project_2.Models.DTO;
 
 namespace Webdev___Project_2.Controllers
 {
@@ -9,11 +12,13 @@ namespace Webdev___Project_2.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public AccountController(UserManager<IdentityUser> userManager)
+        public AccountController(UserManager<IdentityUser> userManager, JwtHandler jwtHandler)
         {
             _userManager = userManager;
+            _jwtHandler = jwtHandler;
         }
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly JwtHandler _jwtHandler;
 
         [Route("register")]
         [HttpPost]
@@ -28,6 +33,18 @@ namespace Webdev___Project_2.Controllers
                 return BadRequest(new RegResponse { Errors = errors });
             }
             return StatusCode(201);
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserForAuth userForAuth)
+        {
+            var user = await _userManager.FindByNameAsync(userForAuth.UserName);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuth.Password))
+                return Unauthorized(new AuthResponse { ErrorMessage = "Invalid Authentication" });
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return Ok(new AuthResponse { IsAuthSuccessful = true, Token = token });
         }
     }
 }

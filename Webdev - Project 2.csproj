@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.11" />
@@ -32,7 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\_interfaces\response\AuthResponse.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\response\RegResponse.model.ts" />
+    <None Remove="ClientApp\src\app\_interfaces\user\UserForAuth.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\user\UserForReg.model.ts" />
   </ItemGroup>
 
@@ -41,7 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\AuthResponse.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\RegResponse.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\UserForAuth.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\UserForReg.model.ts" />
   </ItemGroup>
 
