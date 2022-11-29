@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserForReg } from './../../_interfaces/user/UserForReg.model';
 import { AuthenticationService } from './../../shared/services/authentication.service';
+import { PasswordConfirmationValidatorService } from './../../shared/custom-validators/password-confirmation-validator.service'
+import { ErrorHandlerService } from './../../shared/services/error-handler.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -13,8 +15,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class RegisterUserComponent implements OnInit {
 
   registerForm!: FormGroup;
+  public errorMessage: string = '';
+  public showError?: boolean;
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService, private passConfValidator: PasswordConfirmationValidatorService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +28,8 @@ export class RegisterUserComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       confirm: new FormControl('')
     });
+    this.registerForm.get('confirm')?.setValidators([Validators.required,
+    this.passConfValidator.validateConfirmPassword(this.registerForm.get('password')!)])
   }
 
   public validateControl = (controlName: string) => {
@@ -34,7 +40,8 @@ export class RegisterUserComponent implements OnInit {
     return this.registerForm.get(controlName)?.hasError(errorName)
   }
 
-  public registerUser = (registerFormValue : any) => {
+  public registerUser = (registerFormValue: any) => {
+    this.showError = false;
     const formValues = { ...registerFormValue };
     const user: UserForReg = {
       userName: formValues.username,
@@ -45,7 +52,10 @@ export class RegisterUserComponent implements OnInit {
     this.authService.registerUser("", user)
       .subscribe({
         next: (_) => console.log("Successful registration"),
-        error: (err: HttpErrorResponse) => console.log(err.error.errors)
+        error: (err: HttpErrorResponse) => {
+          this.errorMessage = err.message;
+          this.showError = true;
+        }
       })
   }
 }

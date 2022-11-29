@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Webdev___Project_2.Models
+namespace Webdev___Project_2.Models.DTO
 {
     public class UserForReg
     {
