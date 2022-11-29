@@ -232,3 +232,6 @@ _Pvt_Extensions
 
 # Angular cache files
 ClientApp/.angular/cache/
+
+# Logfiles
+logs/
