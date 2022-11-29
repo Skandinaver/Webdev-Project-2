@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { UFO_sighting } from './../_interfaces/UFO_sighting/UFO_sighting.model'
-import { Category } from './../_interfaces/category/Category.model'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { UFORegisterService } from './../shared/services/uforegister.service';
+import { UFO_sighting } from './../_interfaces/UFO_sighting/UFO_sighting.model';
+import { Category } from './../_interfaces/category/Category.model';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -16,7 +17,7 @@ export class UFORegisterComponent implements OnInit {
   public errorMessage: string = '';
   public showError?: boolean;
   public categories: Category[] = [];
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private uforegisterservice: UFORegisterService) {
     http.get<Category[]>(baseUrl + 'api/categories').subscribe(result => {
       this.categories = result;
     }, error => console.error(error));
@@ -49,13 +50,13 @@ export class UFORegisterComponent implements OnInit {
       description: formValues.description
     };
 
-    //this.authService.uforegister("", ufo)
-      //.subscribe({
-        //next: (_) => console.log("Successful registration"),
-        //error: (err: HttpErrorResponse) => {
-          //this.errorMessage = err.message;
-          //this.showError = true;
-        //}
-      //})
+    this.uforegisterservice.registerUFO("", ufo)
+      .subscribe({
+        next: (_) => console.log("Successful registration"),
+        error: (err: HttpErrorResponse) => {
+          this.errorMessage = err.message;
+          this.showError = true;
+        }
+      })
   }
 }

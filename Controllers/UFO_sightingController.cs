@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -75,13 +76,14 @@ namespace Webdev___Project_2.Controllers
 
         // POST: api/UFO_sighting
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<UFO_sighting>> PostUFO_sighting(UFO_sighting uFO_sighting)
         {
             _context.UFO_sighting.Add(uFO_sighting);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUFO_sighting", new { id = uFO_sighting.ID }, uFO_sighting);
+            return StatusCode(201);
         }
 
         // DELETE: api/UFO_sighting/5

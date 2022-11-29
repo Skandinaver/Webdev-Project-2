@@ -11,6 +11,13 @@ import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UFORegisterComponent } from './ufo-register/ufo-register.component'
 import { ErrorHandlerService } from './shared/services/error-handler.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { config } from 'rxjs';
+import { Token } from '@angular/compiler';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -32,7 +39,14 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
       { path: 'ufo-register', component: UFORegisterComponent },
 
 
-    ])
+    ]),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7078"],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     {
