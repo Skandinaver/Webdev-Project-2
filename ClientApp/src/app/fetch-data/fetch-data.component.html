@@ -18,7 +18,7 @@
   <tbody>
     <tr *ngFor="let UFO_sighting of UFO_sightings">
       <td>{{ UFO_sighting.ufO_title }}</td>
-      <td>{{ UFO_sighting.category.category_name }}</td>
+      <td>{{ UFO_sighting.category?.category_name }}</td>
       <td>{{ UFO_sighting.longitude }}</td>
       <td>{{ UFO_sighting.latitude }}</td>
       <td>{{ UFO_sighting.observation_date }}</td>

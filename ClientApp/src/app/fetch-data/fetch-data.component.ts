@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UFO_sighting } from './../_interfaces/UFO_sighting/UFO_sighting.model'
 
 @Component({
   selector: 'app-fetch-data',
@@ -15,17 +16,5 @@ export class FetchDataComponent {
   }
 }
 
-interface Category {
-  id: number;
-  category_name: string;
-}
-interface UFO_sighting {
-  id: number;
-  categoryid: number;
-  category: Category;
-  ufO_title: string;
-  longitude: number;
-  latitude: number;
-  observation_date: Date;
-  description: string;
-}
+
+

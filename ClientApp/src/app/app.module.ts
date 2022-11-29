@@ -8,8 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { UFORegisterComponent } from './ufo-register/ufo-register.component'
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 
 @NgModule({
@@ -17,8 +17,8 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     FetchDataComponent,
+    UFORegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,8 +28,8 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
-      { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'ufo-register', component: UFORegisterComponent },
 
 
     ])

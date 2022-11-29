@@ -33,19 +33,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\ufo-register\ufo-register.component.ts" />
+    <None Remove="ClientApp\src\app\_interfaces\category\Category.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\response\AuthResponse.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\response\RegResponse.model.ts" />
+    <None Remove="ClientApp\src\app\_interfaces\UFO_sighting\UFO_sighting.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\user\UserForAuth.model.ts" />
     <None Remove="ClientApp\src\app\_interfaces\user\UserForReg.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\_interfaces\UFO_sighting\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\ufo-register\ufo-register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\category\Category.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\AuthResponse.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\response\RegResponse.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_interfaces\UFO_sighting\UFO_sighting.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\UserForAuth.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\_interfaces\user\UserForReg.model.ts" />
   </ItemGroup>
