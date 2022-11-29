@@ -45,6 +45,7 @@ namespace Webdev___Project_2.Controllers
 
         // PUT: api/UFO_sighting/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUFO_sighting(int id, UFO_sighting uFO_sighting)
         {
@@ -71,7 +72,7 @@ namespace Webdev___Project_2.Controllers
                 }
             }
 
-            return NoContent();
+            return StatusCode(201);
         }
 
         // POST: api/UFO_sighting
@@ -87,6 +88,7 @@ namespace Webdev___Project_2.Controllers
         }
 
         // DELETE: api/UFO_sighting/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUFO_sighting(int id)
         {

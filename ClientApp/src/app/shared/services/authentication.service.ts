@@ -15,12 +15,14 @@ export class AuthenticationService {
   //This observable notifies all subscribed components that Auth state is changed
   private authChangeSub = new Subject<boolean>()
   public authChanged = this.authChangeSub.asObservable();
+  public isAuthorized = localStorage.getItem("token") != null;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
   public registerUser = (route: string, body: UserForReg) => {
     return this.http.post<RegResponse>(this.createCompleteRoute(route, this.baseUrl + 'api/Account/register'), body);
   }
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
+    this.isAuthorized = isAuthenticated;
     this.authChangeSub.next(isAuthenticated);
   }
   private createCompleteRoute = (route: string, envAddress: string) => {
@@ -28,5 +30,10 @@ export class AuthenticationService {
   }
   public loginUser = (route: string, body: UserForAuth) => {
     return this.http.post<AuthResponse>(this.createCompleteRoute(route, this.baseUrl + 'api/Account/login'), body);
+  }
+  public logout = () => {
+    localStorage.removeItem("token");
+    this.sendAuthStateChangeNotification(false);
+    this.isAuthorized = false;
   }
 }

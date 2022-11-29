@@ -15,7 +15,7 @@
       <div class="mb-3 row">
         <label for="categoryid" class="col-form-label col-sm-2">Category:</label>
         <div class="col-md-5">
-          <select id="categoryid" formControlName="categoryid" class="form-control">
+          <select id="categoryid" formControlName="categoryid" class="form-control" >
             <option *ngFor="let category of categories; index as i;" value="{{categories[i].id}}"> {{categories[i].category_name}}</option>
           </select>
         </div>
@@ -47,7 +47,8 @@
       <br>
       <div class="mb-3 row">
         <div class="col-md-1">
-          <button type="submit" class="btn btn-info" [disabled]="!UFOForm.valid">Report</button>
+          <button *ngIf="!editing" type="submit" class="btn btn-info" [disabled]="!UFOForm.valid">Report</button>
+          <button *ngIf="editing" type="submit" class="btn btn-info" [disabled]="!UFOForm.valid">Update</button>
         </div>
       </div>
     </form>

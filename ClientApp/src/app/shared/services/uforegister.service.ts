@@ -12,7 +12,20 @@ export class UFORegisterService {
   public registerUFO = (route: string, body: UFO_sighting) => {
     return this.http.post<RegResponse>(this.createCompleteRoute(route, this.baseUrl + 'api/UFO_sighting'), body);
   }
+  public deleteUFO = (route: string) => {
+    return this.http.delete<RegResponse>(this.createCompleteRoute(route, this.baseUrl + 'api/UFO_sighting'));
+  }
+  public getUFOs = () => {
+    return this.http.get<UFO_sighting[]>(this.baseUrl + 'api/UFO_sighting')
+  }
+  public getUFO = (id: number) => {
+    return this.http.get<UFO_sighting>(this.createCompleteRoute(id.toString(), this.baseUrl + 'api/UFO_sighting'))
+  }
+  public updateUFO = (id: number, body: UFO_sighting) => {
+    return this.http.put<UFO_sighting>(this.createCompleteRoute(id.toString(), this.baseUrl + 'api/UFO_sighting'), body)
+  }
   private createCompleteRoute = (route: string, envAddress: string) => {
     return `${envAddress}/${route}`;
   }
+
 }

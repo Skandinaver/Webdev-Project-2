@@ -27,7 +27,7 @@ export class ErrorHandlerService implements HttpInterceptor {
       return this.handleBadRequest(error);
     }
     else if (error.status === 401) {
-      return 'You have to be logged inn to use this feature';
+      return 'Invalid login';
     }
     return "If you're reading this, something went horribly wrong"
   }

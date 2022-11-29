@@ -37,6 +37,7 @@ export function tokenGetter() {
       { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'ufo-register', component: UFORegisterComponent },
+      { path: 'ufo-register/:id', component: UFORegisterComponent },
 
 
     ]),
