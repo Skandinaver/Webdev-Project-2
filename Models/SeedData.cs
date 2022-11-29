@@ -8,12 +8,12 @@ namespace Webdev___Project_2.Models
     public class SeedData
     {
 
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static void Initialize(IServiceProvider serviceProvider, ILoggerFactory loggerFactory)
         {
 
             using (var context = new SPAContext(
                 serviceProvider.GetRequiredService<
-                    DbContextOptions<SPAContext>>()))
+                    DbContextOptions<SPAContext>>(), loggerFactory))
             {
                 if (context == null || context.Category == null)
                 {
@@ -52,7 +52,7 @@ namespace Webdev___Project_2.Models
 
             using (var context = new SPAContext(
                serviceProvider.GetRequiredService<
-                   DbContextOptions<SPAContext>>()))
+                   DbContextOptions<SPAContext>>(), loggerFactory))
             {
                 if (context == null || context.UFO_sighting == null)
                 {

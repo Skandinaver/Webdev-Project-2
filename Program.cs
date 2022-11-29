@@ -10,9 +10,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Webdev___Project_2.JwtFeatures;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SPAContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SPAContext") ?? throw new InvalidOperationException("Connection string 'SPAContext' not found.")));
+
+using var loggerFactory =
+    LoggerFactory.Create(lb => lb.AddConfiguration(builder.Configuration));
 
 // Add services to the container.
 
@@ -24,7 +28,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>
         options.Password.RequireDigit = false;
         options.Password.RequiredLength = 6;
         options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = true;
+        options.Password.RequireUppercase = false;
         options.Password.RequireLowercase = false;
     })
 .AddEntityFrameworkStores<SPAContext>();
@@ -59,7 +63,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<SPAContext>();
     context.Database.EnsureDeleted();
     context.Database.EnsureCreated();
-    SeedData.Initialize(services);
+    SeedData.Initialize(services, loggerFactory);
     // DbInitializer.Initialize(context);
 }
 
