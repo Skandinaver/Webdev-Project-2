@@ -4,6 +4,7 @@ import { UFORegisterService } from './../shared/services/uforegister.service';
 import { UFO_sighting } from './../_interfaces/UFO_sighting/UFO_sighting.model';
 import { Category } from './../_interfaces/category/Category.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ufo-register',
@@ -17,7 +18,7 @@ export class UFORegisterComponent implements OnInit {
   public errorMessage: string = '';
   public showError?: boolean;
   public categories: Category[] = [];
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private uforegisterservice: UFORegisterService) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private uforegisterservice: UFORegisterService, private router: Router) {
     http.get<Category[]>(baseUrl + 'api/categories').subscribe(result => {
       this.categories = result;
     }, error => console.error(error));
@@ -52,7 +53,7 @@ export class UFORegisterComponent implements OnInit {
 
     this.uforegisterservice.registerUFO("", ufo)
       .subscribe({
-        next: (_) => console.log("Successful registration"),
+        next: (_) => this.router.navigate(['/fetch-data']),
         error: (err: HttpErrorResponse) => {
           this.errorMessage = err.message;
           this.showError = true;
