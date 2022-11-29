@@ -24,10 +24,10 @@
       <td>{{ UFO_sighting.observation_date | date  : 'mediumDate' }}</td>
       <td>{{ UFO_sighting.description }}</td>
       <td  *ngIf="isUserAuthenticated">
-        <a [routerLink]="['/ufo-register/', UFO_sighting.id]">Edit</a>
+        <a class="text-dark" [routerLink]="['/ufo-register/', UFO_sighting.id]">Edit</a>
       </td>
       <td *ngIf="isUserAuthenticated">
-        <button class="btn text-dark" (click)="delete(UFO_sighting.id)">Delete</button>
+        <a class="text-dark" (click)="delete(UFO_sighting.id)">Delete</a>
       </td>
     </tr>
   </tbody>
