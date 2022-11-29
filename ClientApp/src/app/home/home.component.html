@@ -5,3 +5,84 @@
 <div class="text">
   <p>In this web application you can report all kinds of UFO sightings you have encountered</p>
 </div>
+
+
+
+<form action="https://formspree.io" method="POST">
+
+  <label for="name">
+    Name:
+  </label>
+  <input type="text" id="name" name="name" class="full-width" />
+
+  <br />
+
+  <label for="email">
+    Email Address:
+  </label>
+
+  <input type="email" id="email" name="_replyto" class="full-width" />
+
+  <br />
+
+  <label for="message">
+    The feedback:
+  </label>
+  <textarea name="message" id="message" cols="30" rows="10" class="full-width"></textarea>
+
+  <br />
+  <input type="submit" value="Send" class="button" />
+</form>
+
+<!-- {{
+ "contact" -css
+
+form {
+  margin: 10% auto 0 auto;
+  padding: 40px;
+  width: 450px;
+  overflow: hidden;
+  background: green;
+  border-radius: 10px;
+  color: white;
+}
+
+
+input[type=submit] {
+  padding: 15px 60px;
+  width: auto;
+  background: white;
+  border: none;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  clear: right;
+}
+
+form label,
+form input {
+  float: left;
+  clear: both;
+}
+
+form input {
+  margin: 15px 0;
+  padding: 15px 10px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+form textarea {
+  float: left;
+  clear: both;
+  width: 100%;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 20px;
+  display: inline-block;
+}
+}} -->
