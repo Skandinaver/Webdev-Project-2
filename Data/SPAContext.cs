@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Composition;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
@@ -15,10 +16,14 @@ namespace Webdev___Project_2.Data
     {
         //LoggerFactory object
         public readonly ILoggerFactory loggerFactory;
-        public SPAContext (DbContextOptions<SPAContext> options, ILoggerFactory loggerFactory)
+
+        public SPAContext (DbContextOptions<SPAContext> options, ILoggerFactory? loggerFactory)
             : base(options)
         {
-            this.loggerFactory = loggerFactory.AddFile("logs/logfile.txt");
+            if (loggerFactory != null) {
+                this.loggerFactory = loggerFactory.AddFile("logs/logfile.txt");
+            }
+            
         }
 
         public DbSet<Webdev___Project_2.Models.Category> Category { get; set; } = default!;
