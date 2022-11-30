@@ -1,6 +1,6 @@
 <h1 id="tableLabel">UFO Observations</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p style="font-weight: 100; font-size: x-large">Here you can view reported UFO sightings</p>
 
 <p *ngIf="!UFO_sightings"><em>Loading...</em></p>
 
@@ -23,12 +23,16 @@
       <td>{{ UFO_sighting.latitude }}</td>
       <td>{{ UFO_sighting.observation_date | date  : 'mediumDate' }}</td>
       <td>{{ UFO_sighting.description }}</td>
-      <td  *ngIf="isUserAuthenticated">
-        <a class="text-dark" [routerLink]="['/ufo-register/', UFO_sighting.id]">Edit</a>
+      <td *ngIf="isUserAuthenticated">
+        <button type="button" class="btn btn-info"><a style="text-decoration: none" [routerLink]="['/ufo-register/', UFO_sighting.id]">Edit</a></button>
       </td>
       <td *ngIf="isUserAuthenticated">
-        <a class="text-dark" (click)="delete(UFO_sighting.id)">Delete</a>
+        <button type="button" class="btn btn-danger"><a style="text-decoration: none; color:whitesmoke" (click)="delete(UFO_sighting.id)">Delete</a></button>
       </td>
     </tr>
   </tbody>
 </table>
+<footer class="bg-light fixed-bottom" style="font-weight: 350; font-size: x-large">
+  <p class="text-center">XCOM Observations database</p>
+  <p class="text-center">Contact us: <br />info@xcom.com</p>
+</footer>

@@ -15,7 +15,7 @@
       <div class="mb-3 row">
         <label for="categoryid" class="col-form-label col-sm-2">Category:</label>
         <div class="col-md-5">
-          <select id="categoryid" formControlName="categoryid" class="form-control" >
+          <select id="categoryid" formControlName="categoryid" class="form-control">
             <option *ngFor="let category of categories; index as i;" value="{{categories[i].id}}"> {{categories[i].category_name}}</option>
           </select>
         </div>
@@ -54,3 +54,7 @@
     </form>
   </div>
 </div>
+<footer class="bg-light fixed-bottom" style="font-weight: 350; font-size: x-large">
+  <p class="text-center">XCOM Observations database</p>
+  <p class="text-center">Contact us: <br />info@xcom.com</p>
+</footer>
